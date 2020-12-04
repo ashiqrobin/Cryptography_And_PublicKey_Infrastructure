@@ -1,0 +1,36 @@
+
+```{r setup, include=TRUE}
+
+library(ggplot2)
+
+#read dataset
+#location of the dataset
+data <- read.table("C:/Users/Robin/Desktop/LoRaWAN/airquality.csv", header = FALSE, sep = ",")
+#head(data)
+
+data_1= airquality$Ozone
+
+# calculate the number of non-missing values in "data"
+
+n = sum(!is.na(data_1))
+head(n)
+
+# obtain empirical CDF values
+data.ecdf = ecdf(data_1)
+data.ecdf
+
+#Create PNG file 
+#first we need to set the path ex. ("Path address/name.png" )
+#mention the resultion of the file
+
+
+png("C:/Users/Robin/Desktop/LoRaWAN/ecdf1.png", width = 300, height = 300, units = "px", bg = "white")
+
+plot(data.ecdf, xlab = 'Sample Quantiles of Ozone', ylab = '', main = 'ECDF\nOzone Pollution in New York')
+
+mtext(text = expression(hat(F)[n](x)), side = 2, line = 2.5)
+dev.off()
+
+
+```
+
